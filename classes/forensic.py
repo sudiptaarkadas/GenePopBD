@@ -33,7 +33,7 @@ class Forensic(object):
   def foren_param(self):
     PoE = self.per_hetero*self.per_hetero*(1.0-2.0*self.per_hetero*
       self.per_homo*self.per_homo/1000000)/10000.0
-    TPI = 0.5/(self.per_hetero/100)
+    TPI = 0.5/(self.per_homo/100)
 
     return PoE, TPI
 
