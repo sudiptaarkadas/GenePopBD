@@ -42,7 +42,7 @@ class Forensic(object):
     dom = self.a + self.b
 
     d = {x:dom.count(x) for x in dom}
-    
+  
     sum_occ = 0
     for x in d:
       sum_occ += d[x]
@@ -52,7 +52,7 @@ class Forensic(object):
     alle = []
     number = []
     percent = []
-    for x in d:
+    for x in sorted(d):
       alle.append(x)
       number.append(d[x])
       percent.append( d[x]*100.0/sum_occ)
