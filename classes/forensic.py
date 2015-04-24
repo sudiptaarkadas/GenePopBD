@@ -39,8 +39,20 @@ class Forensic(object):
     dom = self.a + self.b
 
     d = {x:dom.count(x) for x in dom}
+    
+    sum_occ = 0
+    for x in d:
+      sum_occ += d[x]
 
-    return d
+    alle = []
+    number = []
+    percent = []
+    for x in d:
+      alle.append(x)
+      number.append(d[x])
+      percent.append( d[x]*100.0/sum_occ)
+
+    return alle, number, percent
 
   'Functions for checking data file'
   def check(self):
