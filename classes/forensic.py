@@ -12,6 +12,7 @@ class Forensic(object):
     self.total = len(self.a)
     self.homo = 0
     self.hetero = 0
+    self.total_allele = 0
     self.per_homo = 0
     self.per_hetero = 0
 
@@ -30,7 +31,7 @@ class Forensic(object):
     
     self.hetero = self.total - self.homo
 
-  def foren_param(self):
+  def paternity_statistics(self):
     PoE = self.per_hetero*self.per_hetero*(1.0-2.0*self.per_hetero*
       self.per_homo*self.per_homo/1000000)/10000.0
     TPI = 0.5/(self.per_homo/100)
@@ -46,6 +47,8 @@ class Forensic(object):
     for x in d:
       sum_occ += d[x]
 
+    self.total_allele = sum_occ
+
     alle = []
     number = []
     percent = []
@@ -54,7 +57,7 @@ class Forensic(object):
       number.append(d[x])
       percent.append( d[x]*100.0/sum_occ)
 
-    return alle, number, percent
+    return sum_occ, alle, number, percent
 
   'Functions for checking data file'
   def check(self):
