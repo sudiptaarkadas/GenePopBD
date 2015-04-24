@@ -1,0 +1,11 @@
+This is the todo file that contain the information about the job needs to be done.
+
+1. Import CSV file in a 2D array.
+2. Find the Homo.
+3. Find the Hetero.
+4. Calculate Power of exclusion.
+5. Calculate Typical paternity index.
+6. Calculate Matching Probability.
+7. Calculate Power of Discrimination.
+8. Calculate PIC.
+9. Make a output file in CSV.
