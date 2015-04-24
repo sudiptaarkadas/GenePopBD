@@ -12,14 +12,16 @@ class Forensic(object):
     self.total = len(self.a)
     self.homo = 0
     self.hetero = 0
+    self.per_homo = 0
+    self.per_hetero = 0
 
   def per_homo_hetero(self):
     self.find_homo_hetero()
 
-    per_homo = self.homo * 100.0 / self.total
-    per_hetero = 100.0 - per_homo
+    self.per_homo = self.homo * 100.0 / self.total
+    self.per_hetero = 100.0 - self.per_homo
 
-    return self.total, self.homo, self.hetero, per_homo, per_hetero
+    return self.total, self.homo, self.hetero, self.per_homo, self.per_hetero
 
   def find_homo_hetero(self):
     for i in range(len(self.a)):
@@ -29,9 +31,9 @@ class Forensic(object):
     self.hetero = self.total - self.homo
 
   def foren_param(self):
-    PoE = self.hetero*self.hetero*(1.0-2.0*self.hetero*
-      self.homo*self.homo)
-    TPI = 0.5/self.hetero
+    PoE = self.per_hetero*self.per_hetero*(1.0-2.0*self.per_hetero*
+      self.per_homo*self.per_homo/1000000)/10000.0
+    TPI = 0.5/(self.per_hetero/100)
 
     return PoE, TPI
 
