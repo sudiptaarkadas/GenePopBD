@@ -1,6 +1,18 @@
 How to run this package
 -----------------------
 
+Required:
+This is a python package.
+
+  Library:
+  --------
+    1. Numpy: details of it can be found at http://www.numpy.org/
+
+To run this program:
+
 	$python main.py input_file.csv
+
+where
+    input_file.csv: is the name of input file of CSV format.
 
 
