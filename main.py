@@ -1,7 +1,9 @@
+import sys
+
 from classes.load import Load
 from classes.forensic import Forensic
 
-input_file = 'input.csv'
+input_file = sys.argv[1]
 
 csv_file = Load(input_file)
 
