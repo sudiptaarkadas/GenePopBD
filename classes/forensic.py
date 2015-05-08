@@ -3,9 +3,10 @@ class Forensic(object):
   Forensic parameter calculation.
   '''
 
-  def __init__(self, a, b):
+  def __init__(self, a, b, c):
     self.a = a
     self.b = b
+    self.c = c
 
     self.check()
 
@@ -15,6 +16,7 @@ class Forensic(object):
     self.total_allele = 0
     self.per_homo = 0
     self.per_hetero = 0
+    self.total_genotype = 0
 
   def per_homo_hetero(self):
     self.find_homo_hetero()
@@ -52,12 +54,49 @@ class Forensic(object):
     alle = []
     number = []
     percent = []
+    Pi2 = []
+    Pi4 = []
+    sum_Pi2 = 0.0
+    sum_Pi4 = 0.0
+    pic = 1.0
     for x in sorted(d):
       alle.append(x)
       number.append(d[x])
-      percent.append( d[x]*100.0/sum_occ)
+      percent.append(d[x]*1.0/sum_occ)
+      Pi2.append((d[x]*1.0/sum_occ)**2)
+      Pi4.append((d[x]*1.0/sum_occ)**4)
+      sum_Pi2 = sum_Pi2 + ((d[x]*1.0/sum_occ)**2)
+      sum_Pi4 = sum_Pi4 + ((d[x]*1.0/sum_occ)**4)
 
-    return sum_occ, alle, number, percent
+    pic = 1.0-sum_Pi2-(sum_Pi2**2)+sum_Pi4
+
+    return sum_occ, alle, number, percent, Pi2, Pi4, pic
+
+  def geno_calc(self):
+    dom = self.c
+
+    d = {x:dom.count(x) for x in dom}
+  
+    sum_geno = 0
+    for x in d:
+      sum_geno += d[x]
+
+    self.total_genotype = sum_geno
+
+    genotype = []
+    number = []
+    percent = []
+    matching_probability = 0.0
+    matching_probability = 1.0
+    for x in sorted(d):
+      genotype.append(x)
+      number.append(d[x])
+      percent.append((d[x]*1.0/sum_geno)**2)
+      matching_probability = matching_probability + ((d[x]*1.0/sum_geno)**2)
+
+    power_of_discrimination = 1.0 - matching_probability
+
+    return sum_geno, genotype, number, percent, matching_probability, power_of_discrimination
 
   'Functions for checking data file'
   def check(self):
