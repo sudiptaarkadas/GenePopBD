@@ -87,7 +87,7 @@ class Forensic(object):
     number = []
     percent = []
     matching_probability = 0.0
-    matching_probability = 1.0
+    power_of_discrimination = 1.0
     for x in sorted(d):
       genotype.append(x)
       number.append(d[x])
