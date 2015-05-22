@@ -26,18 +26,24 @@ for j in range(1, len(data[0])-1,2):
   allele_l = []
   allele_r = []
   allele_g = []
+  allele_all = []
 
   for i in range(1,len(data)):
     allele_l.append(data[i][j])
     allele_r.append(data[i][j+1])
-    if float(data[i][j]) > float(data[i][j+1]):
-      allele_g.append(data[i][j+1]+','+data[i][j])
-    else:
-      allele_g.append(data[i][j]+','+data[i][j+1])
+    if data[i][j] != '?' and data[i][j+1] != '?':
+      if float(data[i][j]) > float(data[i][j+1]):
+        allele_g.append(data[i][j+1]+','+data[i][j])
+      else:
+        allele_g.append(data[i][j]+','+data[i][j+1])
+    if data[i][j] != '?':
+      allele_all.append(data[i][j])
+    if data[i][j+1] != '?':
+      allele_all.append(data[i][j+1])
 
   'Initiating forensic class'
 
-  forensic = Forensic(allele_l, allele_r, allele_g)
+  forensic = Forensic(allele_l, allele_r, allele_g, allele_all)
 
   per_homo_hetero = forensic.per_homo_hetero()
 
