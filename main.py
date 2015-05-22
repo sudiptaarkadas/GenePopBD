@@ -30,7 +30,10 @@ for j in range(1, len(data[0])-1,2):
   for i in range(1,len(data)):
     allele_l.append(data[i][j])
     allele_r.append(data[i][j+1])
-    allele_g.append(data[i][j]+','+data[i][j+1])
+    if float(data[i][j]) > float(data[i][j+1]):
+      allele_g.append(data[i][j+1]+','+data[i][j])
+    else:
+      allele_g.append(data[i][j]+','+data[i][j+1])
 
   'Initiating forensic class'
 
@@ -117,7 +120,7 @@ print 'TPI: Typical Paternity Index'
 print '\n'
 
 for i in range(len(r_locas)):
-  print r_locas[i], '    \t', r_poe[i],  '    \t', r_pic[i], '   \t', r_mp[i], '          \t',r_pod[i], '  \t', r_tpi[i]
+  print r_locas[i], '    \t', r_poe[i],  '    \t', r_pic[i], '   \t', r_mp[i], '            \t',r_pod[i], '     \t', r_tpi[i]
 
 'Writting output file in csv format'
 csv_file.down([r_locas, r_homo, r_per_homo, r_hetero, r_per_hetero, r_poe, r_tpi, r_pic, r_mp, r_pod])
