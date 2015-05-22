@@ -10,10 +10,11 @@ class Forensic(object):
     check: function to check the errors in input file
   '''
 
-  def __init__(self, a, b, c):
+  def __init__(self, a, b, c, d):
     self.a = a
     self.b = b
     self.c = c
+    self.d = d
 
     self.total = len(self.a)
     self.homo = 0
@@ -46,7 +47,7 @@ class Forensic(object):
     return PoE, TPI
 
   def freq_calc(self):
-    dom = self.a + self.b
+    dom = self.d
 
     d = {x:dom.count(x) for x in dom}
   
@@ -121,4 +122,4 @@ class Forensic(object):
 
     if len(self.a) != len(self.b):
       print "Alleles are not equal."
-      return
+    return
